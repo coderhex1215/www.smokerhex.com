@@ -1,0 +1,989 @@
+
+<!-- 文件: templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Home - HofGamer</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YVL52LNXVW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YVL52LNXVW');
+  </script>
+
+  <style>
+    html,
+    body {
+      background: #1e1e2f;
+      color: #d1d1e0;
+      width: 100%;
+      min-height: 100%
+    }
+
+    .navbar {
+      background: #282c34 !important
+    }
+
+    .navbar-brand {
+      color: #ffc107 !important
+    }
+
+    .navbar-brand:hover {
+      color: #fff !important
+    }
+
+    .nav-link {
+      color: #d1d1e0 !important
+    }
+
+    .nav-link:hover {
+      color: #fff !important
+    }
+
+    footer {
+      background: #282c34;
+      color: #d1d1e0;
+      padding: 10px 0;
+      text-align: center
+    }
+
+    .tip-card {
+      background: #282c34;
+      border: 1px solid #343a40;
+      border-radius: .5rem
+    }
+
+    .tip-card p {
+      margin: 0;
+      font-size: .9rem;
+      color: #ffc107
+    }
+
+    .tip-card a {
+      color: #ffc107;
+      text-decoration: underline
+    }
+
+    /* ≥1 优先级小贴士：更醒目 */
+    .tip-high {
+      background: #ffc107;
+      border: 1px solid #ffdf40
+    }
+
+    .tip-high p {
+      color: #1e1e2f
+    }
+
+    .tip-high a {
+      color: #1e1e2f
+    }
+
+    /* YMIR 链接特效 */
+    .nav-link-ymir {
+      background: linear-gradient(45deg, #ffcc33, #ff8800);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+
+    .nav-link-ymir:hover {
+      color: #ffd966 !important;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/static/css/title_styles.css">
+  <link rel="icon" href="/static/images/favicon.png">
+</head>
+
+<body>
+
+  <!-- ───── 导航条 ───── -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/" style="font-size:1.5rem;font-weight:bold;">
+        Hof<span style="color:#fff;">Gamer</span>.Com
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+          <!-- ✅ 新增 YMIR 菜单 -->
+          <li class="nav-item">
+            <a class="nav-link nav-link-ymir" href="https://ymir.hofgamer.com" target="_blank">YMIR</a>
+          </li>
+
+
+
+          <!-- 服务器下拉 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="serverDropdown" role="button" data-bs-toggle="dropdown">
+              Server
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="serverDropdown">
+              <li><a class="dropdown-item" href="/server_list">Server</a></li>
+              <li><a class="dropdown-item" href="/clans">Clan</a></li>
+              <li><a class="dropdown-item" href="/player">Player</a></li>
+              <li><a class="dropdown-item" href="/player/new/">New Players</a></li>
+              <li><a class="dropdown-item" href="/player/left/">Departed Players</a></li>
+              <li><a class="dropdown-item" href="/hall_of_fame/">Hall of Fame</a></li>
+            </ul>
+          </li>
+
+          <!-- 联盟管理下拉 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="allianceDropdown" role="button" data-bs-toggle="dropdown">
+              Alliance Management
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="allianceDropdown">
+              <li><a class="dropdown-item" href="/alliance-management/">Alliance Management</a></li>
+              <li><a class="dropdown-item" href="/medals">Medals</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><span class="dropdown-item-text text-muted small">── Server Management ──</span></li>
+              <li><a class="dropdown-item text-muted disabled" href="#">Server Announcement (Coming Soon)</a></li>
+              <li><a class="dropdown-item" href="/server_merit/">Server Player Merit Multiplier</a></li>
+              <li><a class="dropdown-item" href="/battle_view/">Server Reports</a></li>
+              <li><a class="dropdown-item" href="/admin_servers/">Server Status Management</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/community_vote/">Voting Records</a></li>
+              <li><a class="dropdown-item" href="/poll/">Alliance Community Vote</a></li>
+              <li><a class="dropdown-item" href="/cname/list">Rename</a></li>
+              <li><a class="dropdown-item" href="/other_merit/list">Other Merit</a></li>
+              <li><a class="dropdown-item" href="/self_offline/">Self-Offline Players</a></li>
+              <li><a class="dropdown-item" href="/blacklist/">Blacklist</a></li>
+            </ul>
+          </li>
+
+          <!-- 镖局下拉 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="escortDropdown" role="button" data-bs-toggle="dropdown">
+              Escort Bureau
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="escortDropdown">
+              <li><a class="dropdown-item" href="/escort">Escort Bureau</a></li>
+              <li><a class="dropdown-item" href="/stay">Rest</a></li>
+            </ul>
+          </li>
+
+          <!-- 排行榜 & FAQ -->
+          <li class="nav-item"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/faq">FAQ</a></li>
+
+          <!-- ✅ 云手机推广 (Hot) -->
+          <li class="nav-item">
+            <a class="nav-link" href="/cloud-phone/" style="color: #ffc107 !important; font-weight: bold;">
+              🔥 Cloud Phone
+            </a>
+          </li>
+
+          <!-- 用户中心 -->
+          
+          <li class="nav-item"><a class="nav-link" href="/users/register">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="/users/login">Login</a></li>
+          
+
+          <!-- 语言切换 -->
+          <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="langDrop" role="button" data-bs-toggle="dropdown">
+    Language
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDrop">
+    <li><a class="dropdown-item" href="/set_language/zh">中文</a></li>
+    <li><a class="dropdown-item" href="/set_language/zh_Hant_TW">繁體中文</a></li>
+    <li><a class="dropdown-item" href="/set_language/en">English</a></li>
+    <li><a class="dropdown-item" href="/set_language/pt_BR">Português (Brasil)</a></li>
+    <li><a class="dropdown-item" href="/set_language/ko">한국어</a></li>
+    <li><a class="dropdown-item" href="/set_language/th">ภาษาไทย</a></li>
+    <li><a class="dropdown-item" href="/set_language/vi">Tiếng Việt</a></li>
+  </ul>
+</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ───── FAQ 小贴士 ───── -->
+  
+  <div class="container mt-3">
+    
+    <div class="tip-card p-3 shadow-sm mb-2 tip-high">
+      <p class="small">
+        <strong>Tips：</strong>
+        HOF Alliance exclusive cloud phone hosting service with FREE TRIAL! Official partnership with manufacturer for the lowest market price. Members enjoy ¥30 permanent price (Market ¥45), Spring Festival limited-time ¥25 rock-bottom price. Ent…
+        <a href="/faq/?code=8.4"> View</a>
+      </p>
+    </div>
+    
+    <div class="tip-card p-3 shadow-sm mb-2 ">
+      <p class="small">
+        <strong>Tips：</strong>
+        If you are temporarily unable to log in, you can contact any super administrator (Long Ge, nini, Fanshou, or shino) to manually reset your password; the team plans to launch a self‑service recovery feature soon to make account security man…
+        <a href="/faq/?code=3.3"> View</a>
+      </p>
+    </div>
+    
+  </div>
+  
+
+  <div class="container mt-3 mb-3">
+<div class="container mt-1">
+
+  <!-- ========= 玩家搜索 + Discord ========= -->
+  <div class="mb-3 p-4 rounded shadow bg-light">
+    <h3 class="text-center">Player Search</h3>
+
+    <div class="row align-items-start">
+      <!-- 左侧搜索框 -->
+      <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
+        <form action="/player/detail" method="get" class="mb-2">
+          <div class="input-group">
+            <input name="name" type="text" class="form-control form-control-lg" placeholder="Enter player name"
+              required>
+            <button class="btn btn-primary btn-lg">Search</button>
+          </div>
+        </form>
+
+        <h5 class="text-secondary">Recently Searched Players:</h5>
+        <div class="d-flex flex-wrap gap-2">
+          
+          <a href="/player/detail/?name=oOomarkoOo" class="btn btn-outline-secondary btn-sm">
+            oOomarkoOo
+          </a>
+          
+          <a href="/player/detail/?name=Puyo%20%E4%BA%97" class="btn btn-outline-secondary btn-sm">
+            Puyo 亗
+          </a>
+          
+          <a href="/player/detail/?name=%E6%BD%87%E6%B4%92%E3%81%AElaughing%E5%93%A5" class="btn btn-outline-secondary btn-sm">
+            潇洒のlaughing哥
+          </a>
+          
+          <a href="/player/detail/?name=%E5%BC%B7Primo" class="btn btn-outline-secondary btn-sm">
+            強Primo
+          </a>
+          
+          <a href="/player/detail/?name=KaBIRABIRA%201" class="btn btn-outline-secondary btn-sm">
+            KaBIRABIRA 1
+          </a>
+          
+          <a href="/player/detail/?name=%E5%8F%AA%E6%9C%89%E4%B8%80%E5%8F%AA%E7%8C%AB" class="btn btn-outline-secondary btn-sm">
+            只有一只猫
+          </a>
+          
+          <a href="/player/detail/?name=%E3%83%9A%E3%83%83%E3%82%B7%E3%83%A3%E3%83%BC" class="btn btn-outline-secondary btn-sm">
+            ペッシャー
+          </a>
+          
+          <a href="/player/detail/?name=iCortads" class="btn btn-outline-secondary btn-sm">
+            iCortads
+          </a>
+          
+          <a href="/player/detail/?name=Marshmaloi" class="btn btn-outline-secondary btn-sm">
+            Marshmaloi
+          </a>
+          
+          <a href="/player/detail/?name=kevzpurz1" class="btn btn-outline-secondary btn-sm">
+            kevzpurz1
+          </a>
+          
+          <a href="/player/detail/?name=Presiouz04" class="btn btn-outline-secondary btn-sm">
+            Presiouz04
+          </a>
+          
+          <a href="/player/detail/?name=%E2%93%92ancer%E2%92%B8e%D1%8Fo" class="btn btn-outline-secondary btn-sm">
+            ⓒancerⒸeяo
+          </a>
+          
+          <a href="/player/detail/?name=hoy%20djjjd" class="btn btn-outline-secondary btn-sm">
+            hoy djjjd
+          </a>
+          
+          <a href="/player/detail/?name=1plendascomb" class="btn btn-outline-secondary btn-sm">
+            1plendascomb
+          </a>
+          
+          <a href="/player/detail/?name=unluckyshot" class="btn btn-outline-secondary btn-sm">
+            unluckyshot
+          </a>
+          
+          <a href="/player/detail/?name=Yayito24" class="btn btn-outline-secondary btn-sm">
+            Yayito24
+          </a>
+          
+          <a href="/player/detail/?name=kingjosh1" class="btn btn-outline-secondary btn-sm">
+            kingjosh1
+          </a>
+          
+          <a href="/player/detail/?name=Agent%20LOCK" class="btn btn-outline-secondary btn-sm">
+            Agent LOCK
+          </a>
+          
+          <a href="/player/detail/?name=bootstrd1kcd" class="btn btn-outline-secondary btn-sm">
+            bootstrd1kcd
+          </a>
+          
+          <a href="/player/detail/?name=Lu%20%E6%84%9B" class="btn btn-outline-secondary btn-sm">
+            Lu 愛
+          </a>
+          
+          <a href="/player/detail/?name=mrsDUD4Y" class="btn btn-outline-secondary btn-sm">
+            mrsDUD4Y
+          </a>
+          
+          <a href="/player/detail/?name=xdr4gonborn" class="btn btn-outline-secondary btn-sm">
+            xdr4gonborn
+          </a>
+          
+          <a href="/player/detail/?name=Ramen%20C%C3%A1ke" class="btn btn-outline-secondary btn-sm">
+            Ramen Cáke
+          </a>
+          
+          <a href="/player/detail/?name=Tao444" class="btn btn-outline-secondary btn-sm">
+            Tao444
+          </a>
+          
+          <a href="/player/detail/?name=leogpr56x" class="btn btn-outline-secondary btn-sm">
+            leogpr56x
+          </a>
+          
+          <a href="/player/detail/?name=AkazaN%C3%B8Heal%E9%AC%BC" class="btn btn-outline-secondary btn-sm">
+            AkazaNøHeal鬼
+          </a>
+          
+          <a href="/player/detail/?name=Dark%20x%20Greed" class="btn btn-outline-secondary btn-sm">
+            Dark x Greed
+          </a>
+          
+          <a href="/player/detail/?name=DiAK%C3%A9" class="btn btn-outline-secondary btn-sm">
+            DiAKé
+          </a>
+          
+          <a href="/player/detail/?name=I%E4%B8%B6m%20%E3%83%A1V%C3%A9n%E2%93%9Em%20%E3%83%A1" class="btn btn-outline-secondary btn-sm">
+            I丶m メVénⓞm メ
+          </a>
+          
+          <a href="/player/detail/?name=%E4%BA%97%20Zezima" class="btn btn-outline-secondary btn-sm">
+            亗 Zezima
+          </a>
+          
+          <a href="/player/detail/?name=NEY38" class="btn btn-outline-secondary btn-sm">
+            NEY38
+          </a>
+          
+          <a href="/player/detail/?name=franceskalei" class="btn btn-outline-secondary btn-sm">
+            franceskalei
+          </a>
+          
+          <a href="/player/detail/?name=%E6%B0%B8%E7%9C%A0Azrael" class="btn btn-outline-secondary btn-sm">
+            永眠Azrael
+          </a>
+          
+          <a href="/player/detail/?name=Ryll03" class="btn btn-outline-secondary btn-sm">
+            Ryll03
+          </a>
+          
+          <a href="/player/detail/?name=CHINA%E6%B5%B4%E9%BB%84%E5%A4%A7%E5%B8%9D" class="btn btn-outline-secondary btn-sm">
+            CHINA浴黄大帝
+          </a>
+          
+          <a href="/player/detail/?name=Morserus" class="btn btn-outline-secondary btn-sm">
+            Morserus
+          </a>
+          
+        </div>
+      </div>
+
+      <!-- 右侧 Discord 嵌入 -->
+      <div class="col-lg-4 col-md-5 col-sm-12 d-flex justify-content-center">
+        <iframe src="https://discord.com/widget?id=1424673065656389694&theme=dark" width="100%" height="280"
+          allowtransparency="true" frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= 网站公告 ========= -->
+  <div class="mb-4">
+    <h2 class="text-center mb-3">Site Announcements</h2>
+
+    
+    
+    
+    <div class="card mb-3 shadow">
+      <div class="card-body">
+        <h4 class="card-title text-warning">Hofgamer.com Website Update v2.8</h4>
+        <small class="text-muted d-block mb-2">发布时间: 2026-01-18</small>
+        <p class="card-text"><h2 style="color:#ffc107;">🚀 Hofgamer.com Website Update v2.8</h2>
+<h3 style="color:#17a2b8;">1️⃣ Cloud Phone Product Launch 🆕</h3>
+<p>Official partnership with cloud phone manufacturer to offer <strong>the lowest market price</strong> for alliance members!</p>
+<p>🔗 Learn more: <a href="https://hofgamer.com/cloud-phone/" style="color:#ffc107;">hofgamer.com/cloud-phone/</a></p>
+<blockquote style="border-left:4px solid #17a2b8; padding-left:10px; color:#aaa;">💡 More gaming tools coming soon, stay tuned!</blockquote>
+<hr>
+<h3 style="color:#17a2b8;">2️⃣ Voting System Launch</h3>
+<p>New alliance voting feature for more democratic alliance management!</p>
+<p><strong>Main Features:</strong></p>
+<ul>
+<li>📊 Alliance members can create and participate in polls</li>
+<li>🌐 Multi-language support: Poll titles and descriptions support 7 languages</li>
+<li>✏️ Poll editing: Creators and senior administrators can edit poll content</li>
+<li>📝 Operation logs: All edit operations are recorded</li>
+</ul>
+<hr>
+<h3 style="color:#17a2b8;">3️⃣ Server Status Criteria Update</h3>
+<p>Due to reduced enemy numbers and decreased war intensity, automatic war status requirements have been lowered:</p>
+<table border="1" cellpadding="8" style="border-collapse:collapse; margin:10px 0;">
+<tr><th>Enemy Score Ratio</th><th>Status</th><th>Change</th></tr>
+<tr><td>&lt; 20%</td><td>Peace</td><td>Was 25% → 20%</td></tr>
+<tr><td>20% ~ 35%</td><td>War</td><td>Was 25-40% → 20-35%</td></tr>
+<tr><td>35% ~ 55%</td><td>Intense</td><td>Was 40-60% → 35-55%</td></tr>
+<tr><td>55% ~ 75%</td><td>Fierce</td><td>Was 60-75% → 55-75%</td></tr>
+<tr><td>≥ 75%</td><td>Abandoned</td><td>Unchanged</td></tr>
+</table>
+<hr>
+<h3 style="color:#17a2b8;">4️⃣ Forced War Status Merit Rules Update</h3>
+<blockquote style="border-left:4px solid #ffc107; padding-left:10px; color:#ffc107;">⚠️ Important Change</blockquote>
+<p>Merit distribution rules for forced war status (yellow ticket compensation) have been updated:</p>
+<ul>
+<li>🎯 <strong>New Restriction</strong>: When server is no longer in war status, forced yellow ticket compensation war status will <strong>only grant merit to players using yellow tickets for support</strong></li>
+<li>🔮 <strong>Future Optimization</strong>: Will further clarify that only alliance-assigned support players can receive merit</li>
+<li>⚙️ <strong>Local Management Tool</strong>: Server admins can use "Server Player Merit Multiplier" to exclude players who shouldn't receive merit or underperforming players</li>
+</ul>
+<hr>
+<h3 style="color:#17a2b8;">5️⃣ Server Status Display Optimization</h3>
+<p><strong>Access:</strong> Server Detail Page</p>
+<p><strong>New Display Content:</strong></p>
+<ul>
+<li>📈 Score comparison between both sides</li>
+<li>🔧 Status source indicator: Shows whether server status is "Forced" or "Auto-calculated"</li>
+</ul>
+<hr>
+<h3 style="color:#17a2b8;">6️⃣ Home Server Modification Limit</h3>
+<ul>
+<li>⏰ <strong>Frequency Limit</strong>: Home server can only be modified once every 180 days</li>
+<li>📝 <strong>Remark Feature</strong>: Must provide remark when modifying</li>
+</ul>
+<hr>
+<h3 style="color:#17a2b8;">7️⃣ Character Binding Vote Optimization</h3>
+<ul>
+<li>🕐 <strong>Vote Time Record</strong>: Voted member list now shows voting time</li>
+</ul>
+<hr>
+<h3 style="color:#17a2b8;">🐛 Bug Fixes</h3>
+<ul>
+<li>🔧 Fixed incorrect player account merging issues</li>
+<li>🔧 Cleaned up duplicate data caused by incorrect merging</li>
+<li>🔧 Fixed missing poll multi-language field issues</li>
+</ul></p>
+        <a href="/announcement/35" class="btn btn-secondary">
+          View Details
+        </a>
+      </div>
+    </div>
+
+    
+    
+    <ul class="list-group list-group-flush mb-2">
+      
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/announcement/34" class="text-decoration-none">
+          Hofgamer.com Website Update v2.7
+        </a>
+        <small class="text-muted">
+          2026-01-15
+        </small>
+      </li>
+      
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/announcement/33" class="text-decoration-none">
+          Hofgamer.com Website Update v2.6 (Please Read)
+        </a>
+        <small class="text-muted">
+          2026-01-13
+        </small>
+      </li>
+      
+    </ul>
+    <p class="text-end">
+      <a href="/announcement/">更多公告 »</a>
+    </p>
+    
+    
+  </div>
+
+  <!-- ========= 进行中的联盟投票 ========= -->
+  
+
+  <!-- ========= 今日战报（最近 3 天） ========= -->
+  <div class="mb-4">
+    <h2 class="text-center mb-2">
+      Today’s Reports
+      <small class="ms-3">
+        <a href="/battle_view/" class="text-decoration-none">
+          All Reports
+        </a>
+      </small>
+    </h2>
+
+    
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        
+        <li class="list-group-item p-2">
+          <strong>ASIA331Server Reports</strong>,
+          <span>Published by:
+            <a href="/player/detail/?name=%E4%B8%A8%E5%86%AC%E5%A4%A9%E4%B8%A8" class="text-decoration-none">丨冬天丨</a>
+          </span>,
+          <span>Updated at: 2026-01-19 22:03:33</span>
+          <a href="/battle_view/" class="ms-3 text-decoration-none">
+            View
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <strong>ASIA312Server Reports</strong>,
+          <span>Published by:
+            <a href="/player/detail/?name=HLMW%20%E3%83%BBBUMAYO" class="text-decoration-none">HLMW ・BUMAYO</a>
+          </span>,
+          <span>Updated at: 2026-01-19 20:03:48</span>
+          <a href="/battle_view/" class="ms-3 text-decoration-none">
+            View
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <strong>ASIA341Server Reports</strong>,
+          <span>Published by:
+            <a href="/player/detail/?name=%E4%B8%A8%E5%86%AC%E5%A4%A9%E4%B8%A8" class="text-decoration-none">丨冬天丨</a>
+          </span>,
+          <span>Updated at: 2026-01-19 00:09:30</span>
+          <a href="/battle_view/" class="ms-3 text-decoration-none">
+            View
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </div>
+
+  <!-- ========= 改名记录（最近 5 天窗口） ========= -->
+  <div class="mb-4">
+    <h2 class="text-center mb-2">Rename Records</h2>
+    
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=Daffy%E7%A5%9E" class="fw-bold text-decoration-none">Daffy神</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=KAREKA2%20%E3%83%84" class="text-decoration-none">KAREKA2 ツ</a>
+          =>
+          <a href="/player/detail/?name=%E2%93%83%E2%93%98%E2%93%8F%E2%93%90LgTrad%E5%B9%B3%E5%92%8C" class="text-decoration-none">ⓃⓘⓏⓐLgTrad平和</a>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 06:48:49</span>
+          <a href="/cname/bind?locked_old=1&old_name=KAREKA2%20%E3%83%84&locked_new=0&new_name=&search_new_val=%E2%93%83%E2%93%98%E2%93%8F%E2%93%90LgTrad%E5%B9%B3%E5%92%8C&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=SSS%20Rochelle" class="fw-bold text-decoration-none">SSS Rochelle</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=%E3%83%BBApple%E3%83%BB" class="text-decoration-none">・Apple・</a>
+          =>
+          <a href="/player/detail/?name=SSS%20%EB%B9%9B%EC%9D%B4%EB%82%98%EB%8A%94%EA%B1%B8" class="text-decoration-none">SSS 빛이나는걸</a>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 03:04:19</span>
+          <a href="/cname/bind?locked_old=1&old_name=%E3%83%BBApple%E3%83%BB&locked_new=0&new_name=&search_new_val=SSS%20%EB%B9%9B%EC%9D%B4%EB%82%98%EB%8A%94%EA%B1%B8&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=Buthcerer" class="text-decoration-none">Buthcerer</a>
+          =>
+          <a href="/player/detail/?name=%E3%83%A9%E3%83%96%E3%83%BBButcher" class="text-decoration-none">ラブ・Butcher</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 01:45:39</span>
+          <a href="/cname/bind?locked_old=1&old_name=Buthcerer&locked_new=0&new_name=&search_new_val=%E3%83%A9%E3%83%96%E3%83%BBButcher&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=%E2%92%B6%E2%93%9B%E2%93%90%E2%93%98%E2%93%9D%E2%93%90" class="text-decoration-none">Ⓐⓛⓐⓘⓝⓐ</a>
+          =>
+          <a href="/player/detail/?name=%E7%A7%8B%E8%87%B3%E3%81%A3" class="text-decoration-none">秋至っ</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 01:34:56</span>
+          <a href="/cname/bind?locked_old=1&old_name=%E2%92%B6%E2%93%9B%E2%93%90%E2%93%98%E2%93%9D%E2%93%90&locked_new=0&new_name=&search_new_val=%E7%A7%8B%E8%87%B3%E3%81%A3&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=A%20Y%20A%20M%20E%20%E7%BE%8E%E4%BA%BA" class="text-decoration-none">A Y A M E 美人</a>
+          =>
+          <a href="/player/detail/?name=%E6%98%A5%E8%87%B3%E3%81%A3" class="text-decoration-none">春至っ</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 01:29:50</span>
+          <a href="/cname/bind?locked_old=1&old_name=A%20Y%20A%20M%20E%20%E7%BE%8E%E4%BA%BA&locked_new=0&new_name=&search_new_val=%E6%98%A5%E8%87%B3%E3%81%A3&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=ARSYOBUB" class="fw-bold text-decoration-none">ARSYOBUB</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=CHN%E5%87%9D%E7%BB%93%E9%9B%86%E5%9B%A2%E4%B8%B6%EA%B2%94%EB%A1%9C%20%E3%83%85" class="text-decoration-none">CHN凝结集团丶겔로 ヅ</a>
+          =>
+          <a href="/player/detail/?name=%E3%83%A1BLvCk%20%E3%83%84" class="text-decoration-none">メBLvCk ツ</a>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 01:20:46</span>
+          <a href="/cname/bind?locked_old=1&old_name=CHN%E5%87%9D%E7%BB%93%E9%9B%86%E5%9B%A2%E4%B8%B6%EA%B2%94%EB%A1%9C%20%E3%83%85&locked_new=0&new_name=&search_new_val=%E3%83%A1BLvCk%20%E3%83%84&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=%E5%90%8D%E4%BA%BA%E5%A0%82%20BroLong" class="fw-bold text-decoration-none">名人堂 BroLong</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=Zeldard" class="text-decoration-none">Zeldard</a>
+          =>
+          <a href="/player/detail/?name=%E9%BB%91%E6%9A%97%20%E2%93%88%E2%92%B6%E2%93%88%E2%92%BD%E2%92%B6%E2%92%B6%E2%93%84" class="text-decoration-none">黑暗 ⓈⒶⓈⒽⒶⒶⓄ</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-18 23:03:33</span>
+          <a href="/cname/bind?locked_old=1&old_name=Zeldard&locked_new=0&new_name=&search_new_val=%E9%BB%91%E6%9A%97%20%E2%93%88%E2%92%B6%E2%93%88%E2%92%BD%E2%92%B6%E2%92%B6%E2%93%84&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=%E9%87%91%E7%81%BF%E7%81%BF%E7%9A%84%E9%9B%AA%E5%B0%8F%E7%BE%8E%E5%A5%B3" class="fw-bold text-decoration-none">金灿灿的雪小美女</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=Kolja%20Boy%20%E3%83%84" class="text-decoration-none">Kolja Boy ツ</a>
+          =>
+          <a href="/player/detail/?name=Kolja%20Boy%E3%83%84" class="text-decoration-none">Kolja Boyツ</a>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-18 21:08:35</span>
+          <a href="/cname/bind?locked_old=1&old_name=Kolja%20Boy%20%E3%83%84&locked_new=0&new_name=&search_new_val=Kolja%20Boy%E3%83%84&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=Aris%E3%83%84" class="fw-bold text-decoration-none">Arisツ</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=TetaRia" class="text-decoration-none">TetaRia</a>
+          =>
+          <a href="/player/detail/?name=TetaNerd" class="text-decoration-none">TetaNerd</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-18 19:05:03</span>
+          <a href="/cname/bind?locked_old=1&old_name=TetaRia&locked_new=0&new_name=&search_new_val=TetaNerd&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=oGuster" class="fw-bold text-decoration-none">oGuster</a>
+          Initiated Player Rename:
+          <a href="/player/detail/?name=TN%20AZAZEL%20%E7%A9%BA" class="text-decoration-none">TN AZAZEL 空</a>
+          =>
+          <a href="/player/detail/?name=PDN%20%E7%A9%BA" class="text-decoration-none">PDN 空</a>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-18 19:03:05</span>
+          <a href="/cname/bind?locked_old=1&old_name=TN%20AZAZEL%20%E7%A9%BA&locked_new=0&new_name=&search_new_val=PDN%20%E7%A9%BA&search_new=1"
+            class="ms-3">
+            View/Vote
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </div>
+
+  <!-- ========= 联盟修改记录（最近 3 天窗口） ========= -->
+  <div class="mb-4">
+    <h2 class="text-center mb-2">Alliance Modification Records</h2>
+    
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=HN%E3%83%BBQA%E3%83%84" class="fw-bold text-decoration-none">HN・QAツ</a>
+          Initiated change for
+          <a href="/player/detail/?name=HN%20Misaphia" class="fw-bold text-decoration-none">HN Misaphia</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 21:28:34</span>
+          <a href="/c_alliances?name=HN%20Misaphia" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated change for
+          <a href="/player/detail/?name=vhenzpanic" class="fw-bold text-decoration-none">vhenzpanic</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 21:17:33</span>
+          <a href="/c_alliances?name=vhenzpanic" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated change for
+          <a href="/player/detail/?name=Ni%C3%87ole0617" class="fw-bold text-decoration-none">NiÇole0617</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 21:11:20</span>
+          <a href="/c_alliances?name=Ni%C3%87ole0617" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=erissaimase" class="fw-bold text-decoration-none">erissaimase</a>
+          Initiated change for
+          <a href="/player/detail/?name=%E6%B1%A0%E7%94%B0%E4%BE%9D%E6%9D%A5%E6%B2%99" class="fw-bold text-decoration-none">池田依来沙</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 21:10:12</span>
+          <a href="/c_alliances?name=%E6%B1%A0%E7%94%B0%E4%BE%9D%E6%9D%A5%E6%B2%99" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=HLMW%20%E3%83%BBBUMAYO" class="fw-bold text-decoration-none">HLMW ・BUMAYO</a>
+          Initiated change for
+          <a href="/player/detail/?name=SpecialSom%C3%AB1" class="fw-bold text-decoration-none">SpecialSomë1</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 19:50:12</span>
+          <a href="/c_alliances?name=SpecialSom%C3%AB1" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=Dragon%E3%81%B9%E5%A4%AF%E5%A4%A7%E6%96%A7" class="fw-bold text-decoration-none">Dragonべ夯大斧</a>
+          Initiated change for
+          <a href="/player/detail/?name=Dragon%E3%81%B9%E5%A4%AF%E5%A4%A7%E6%96%A7" class="fw-bold text-decoration-none">Dragonべ夯大斧</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 19:29:12</span>
+          <a href="/c_alliances?name=Dragon%E3%81%B9%E5%A4%AF%E5%A4%A7%E6%96%A7" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=%E4%BA%97%20PremieR%20%E4%BA%97" class="fw-bold text-decoration-none">亗 PremieR 亗</a>
+          Initiated change for
+          <a href="/player/detail/?name=%E3%83%BBYurnero%E3%83%BB" class="fw-bold text-decoration-none">・Yurnero・</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 19:23:11</span>
+          <a href="/c_alliances?name=%E3%83%BBYurnero%E3%83%BB" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=Dragon%E3%81%B9%E6%B5%B7%E6%B4%8B" class="fw-bold text-decoration-none">Dragonべ海洋</a>
+          Initiated change for
+          <a href="/player/detail/?name=Dragon%E3%81%B9%E6%B5%B7%E6%B4%8B" class="fw-bold text-decoration-none">Dragonべ海洋</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 19:15:08</span>
+          <a href="/c_alliances?name=Dragon%E3%81%B9%E6%B5%B7%E6%B4%8B" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=%E4%B8%B6Luna" class="fw-bold text-decoration-none">丶Luna</a>
+          Initiated change for
+          <a href="/player/detail/?name=%E4%B8%B6Luna" class="fw-bold text-decoration-none">丶Luna</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting completed）
+          <span class="text-muted float-end">2026-01-19 16:47:53</span>
+          <a href="/c_alliances?name=%E4%B8%B6Luna" class="ms-3">View/Vote</a>
+        </li>
+        
+        <li class="list-group-item p-2">
+          <a href="/player/detail/?name=Titania%20%E3%83%85" class="fw-bold text-decoration-none">Titania ヅ</a>
+          Initiated change for
+          <a href="/player/detail/?name=Titania%20%E3%83%85" class="fw-bold text-decoration-none">Titania ヅ</a>
+           alliance modification:
+          <strong>未知</strong> =>
+          <strong>HOF</strong>
+          （Voting in progress）
+          <span class="text-muted float-end">2026-01-19 12:53:23</span>
+          <a href="/c_alliances?name=Titania%20%E3%83%85" class="ms-3">View/Vote</a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </div>
+
+  <!-- ========= MIR4 数据统计 ========= -->
+  <h2 class="text-center mt-4 mb-3">
+    Mir4 Data Last Updated: 2026-01-19
+  </h2>
+  <h6 class="text-center mb-3">
+    If you find any data errors, contact HOF management to report issues to Brother Long
+  </h6>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">
+            Independent Players (Power > 250k)
+          </h5>
+          <p class="display-4 text-success">61570</p>
+          <a href="/player" class="btn btn-primary">View Player</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Clans Count</h5>
+          <p class="display-4 text-success">15521</p>
+          <a href="/clans" class="btn btn-primary">View Clan</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Alliance Count</h5>
+          <p class="display-4 text-success">5</p>
+          <a href="/alliance" class="btn btn-primary">View Alliance</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  /* 公告富文本样式 */
+  .card-text a {
+    color: #0d6efd;
+    text-decoration: underline;
+  }
+
+  .card-text a:hover {
+    color: #0a58ca;
+  }
+
+  .card-text strong,
+  .card-text b {
+    font-weight: bold;
+  }
+
+  .card-text ul,
+  .card-text ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text p {
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text p:last-child {
+    margin-bottom: 0;
+  }
+</style>
+</div>
+
+  <footer>
+    &copy; 2024 HofGamer.Com. All Rights Reserved.
+    <div class="d-flex justify-content-center">
+      <button id="save-as-image" class="btn btn-warning mt-4">Save as Image</button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- 保存为图片：修正顶部空白 & 捕获整页 -->
+  <script>
+    document.getElementById('save-as-image').addEventListener('click', async () => {
+      const btn = document.getElementById('save-as-image');
+      btn.disabled = true;                         // 防止重复点击
+
+      const prev = { x: window.scrollX, y: window.scrollY };
+      window.scrollTo(0, 0);
+
+      const canvas = await html2canvas(document.body, {
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#1e1e2f',
+        windowWidth: document.documentElement.scrollWidth,
+        windowHeight: document.documentElement.scrollHeight,
+        scrollX: 0,
+        scrollY: 0,
+        scale: 2
+      });
+
+      window.scrollTo(prev.x, prev.y);
+
+      const a = document.createElement('a');
+      a.download = 'HofGamer.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+
+      btn.disabled = false;
+    });
+  </script>
+</body>
+
+</html>
